@@ -1,0 +1,32 @@
+server:
+   port: 8040
+spring:
+   application:
+      name: microservice-config-server
+   cloud:
+      config:
+        server:
+            git:
+               # 如果是公开仓库，可以不用填写账号和密码
+               #search-paths: config-repo # git仓库地址下的相对地址，可以配置多个，用,分割。
+               #default-label: 
+               #username:  # git仓库的账号
+               #password:  # git仓库的密码
+               
+               uri: https://github.com/forezp/SpringcloudConfig/ # 配置git仓库的地址
+               search-paths: respo # git仓库地址下的相对地址，可以配置多个，用,分割。
+               default-label: master
+               username:  # git仓库的账号
+               password:  # git仓库的密码
+eureka:
+# 配置开启健康检查
+   client:
+      healthcheck:
+         enabled: true
+      serviceUrl:
+         defaultZone: http://localhost:8761/eureka/ # 指定注册中心的地址
+   instance:
+      preferIpAddress: true
+      # 按需配置续约更新时间和到期时间
+      lease-expiration-duration-in-seconds: 30
+      lease-renewal-interval-in-seconds: 10
